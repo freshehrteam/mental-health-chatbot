@@ -1,0 +1,542 @@
+﻿archetype (adl_version=1.4; uid=db987815-2602-4144-9b58-1708551eb707)
+	openEHR-EHR-ACTION.health_education.v0
+
+concept
+	[at0000]	-- Health education
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"Vebjørn Arntzen">
+				["organisation"] = <"Oslo universitetssykehus HF, Norway">
+				["email"] = <"varntzen@ous-hf.no">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+		["date"] = <"2011-05-24">
+	>
+	details = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"For å registrere detaljer om kunnskap og ferdigheter som er overført til et individ for å støtte individet i å gjøre helserelaterte beslutninger og gjøremål.">
+			use = <"Bruk for å registrere detaljer om kunnskap og ferdigheter som er overført til et individ for å støtte individet i å gjøre helserelaterte beslutninger og gjøremål.
+
+Kunnskapen kan inkludere, men er ikke begrenset til; rådgivning eller fysisk materiell. Dette kan inkludere lenke til informasjonen. For eksempel: Å registrere at et faktaark om vasektomi er gitt til et individ.
+
+De praktiske ferdighetene kan inkludere, men er ikke begrenset til; administrasjon av medikamenter, sette sprøyter på seg selv, stelle en stomi eller hvordan ta vare på seg selv i postoperativ fase.
+
+Hvis undervisningen som blir gitt er et kurs med en serie av aktiviteter, vil detaljer om hver enkelt aktivitet bli registrert innen prosesstrinnet \"Undervisning gitt\", og når hele kurset er ferdig, vil data bli registrert innen prosesstrinnet \"Undervisning fullført\". Hvis undervisningen som er gitt består av en enkelt aktivitet, eller under en konsultasjon, vil data bli registrert samtidig i prosesstrinnene \"Undervisning gitt\" og \"Undervisning fullført\".">
+			keywords = <"informasjon", "opplæring", "undervisning", "brosjyre", "faktaark", "opplæringsmateriell", "trening", "demonstrasjon", "øving">
+			misuse = <"Skal ikke brukes for å registrere samtykke, for eksempel samtykke til vasektomi etter å ha fått utdelt faktaark om vasektomi.
+
+Skal ikke brukes for å registrere informasjon kommunisert av en kliniker om et individs helse. For eksempel diagnoser, prognoser, funn ved undersøkelser eller resultatet av et inngrep.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about knowledge and skills taught to the individual to support their healthcare-related decisions and activities.">
+			use = <"Use to record details about knowledge and skills taught to the individual to support their healthcare-related decisions and activities.
+
+The knowledge may include, but is not limited to, advice or physical material, including links to the information itself. For example, a record of fact sheets provided to an individual about the risks of a vasectomy.
+
+The practical skills may include, but are not limited to, medication administration, self-injection, and post-op self-care.
+
+If the education provided is a course or series of activities then details about each activity or visit will be recorded against the 'Education provided' pathway step and when the entire course is completed then the data will be recorded against the 'Education completed' pathway step. If the education provided is a single activity or visit, then data will be recorded simultaneously for 'Education provided' and 'Education completed'.">
+			keywords = <"information", "education", "fact sheet">
+			misuse = <"Not to be used to record consent - for example consent to a vasectomy after provision of a fact sheet about vasectomy.
+
+Not to be used to record the communication  of personalised health information by a clinician to an individual - for example, a diagnosis, prognosis or outcome of surgery.">
+			copyright = <"© National E-Health Transition Authority, openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Rita Apelt, Department of Health,NT, Australia", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Chunlan Ma, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Jeremy Oats, NT Health, Australia", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Jo Wright, NT Dept of Health, Australia", "Alan March, Hospital Universitario Austral, Argentina", "Nyree Taylor, Ocean Informatics, Australia">
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"475A04F819EA9E3E978BFB6B8A10A778">
+		["build_uid"] = <"e87b7835-c7c8-4d2e-ad2a-70363a7165f4">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	ACTION[at0000] matches {	-- Health education
+		ism_transition matches {
+			ISM_TRANSITION[at0006] matches {	-- Education planned
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::526]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0006]}		-- Education planned
+					}
+				}
+			}
+			ISM_TRANSITION[at0018] matches {	-- Education recommended
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::526]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0018]}		-- Education recommended
+					}
+				}
+			}
+			ISM_TRANSITION[at0014] matches {	-- Education postponed
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::527]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0014]}		-- Education postponed
+					}
+				}
+			}
+			ISM_TRANSITION[at0015] matches {	-- Education cancelled
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::528]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0015]}		-- Education cancelled
+					}
+				}
+			}
+			ISM_TRANSITION[at0007] matches {	-- Education scheduled
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::529]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0007]}		-- Education scheduled
+					}
+				}
+			}
+			ISM_TRANSITION[at0008] matches {	-- Education provided
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::245]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0008]}		-- Education provided
+					}
+				}
+			}
+			ISM_TRANSITION[at0017] matches {	-- Education suspended
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::530]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0017]}		-- Education suspended
+					}
+				}
+			}
+			ISM_TRANSITION[at0016] matches {	-- Education not completed
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::531]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0016]}		-- Education not completed
+					}
+				}
+			}
+			ISM_TRANSITION[at0013] matches {	-- Education completed
+				current_state matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[openehr::532]}
+					}
+				}
+				careflow_step matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {[local::at0013]}		-- Education completed
+					}
+				}
+			}
+		}
+		description matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0002] matches {	-- Subject
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..*} matches {	-- Method
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0025] occurrences matches {0..*} matches {	-- Material details
+						include
+							archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+					allow_archetype CLUSTER[at0033] occurrences matches {0..*} matches {	-- Additional details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					ELEMENT[at0020] occurrences matches {0..1} matches {	-- Session Number
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {	-- Reason
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {	-- Outcome
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0026] occurrences matches {0..1} matches {	-- Scheduled date/ time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0027] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0021] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0030] occurrences matches {0..1} matches {	-- Requestor order identifier
+						value matches {
+							DV_TEXT matches {*}
+							DV_IDENTIFIER matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0028] occurrences matches {0..*} matches {	-- Requestor
+						include
+							archetype_id/value matches {/.*/}
+					}
+					ELEMENT[at0031] occurrences matches {0..1} matches {	-- Receiver order identifier
+						value matches {
+							DV_TEXT matches {*}
+							DV_IDENTIFIER matches {*}
+						}
+					}
+					allow_archetype CLUSTER[at0029] occurrences matches {0..*} matches {	-- Receiver
+						include
+							archetype_id/value matches {/.*/}
+					}
+					allow_archetype CLUSTER[at0032] occurrences matches {0..*} matches {	-- Recipient
+						include
+							archetype_id/value matches {/.*/}
+					}
+					allow_archetype CLUSTER[at0034] occurrences matches {0..*} matches {	-- Interpreter details
+						include
+							archetype_id/value matches {/openEHR-EHR-CLUSTER\.interpreter_details(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+					allow_archetype CLUSTER[at0023] occurrences matches {0..*} matches {	-- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Health education">
+					description = <"Knowledge and skills to support healthcare-related decisions and activities.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Subject">
+					description = <"Identification of the health education activity, by name.">
+					comment = <"The subject could identify a single knowledge topic or skill, or may be the name of a program or training course that may be delivered over multiple sessions or visits.">
+				>
+				["at0003"] = <
+					text = <"Description">
+					description = <"Narrative description of the health education information provided.">
+				>
+				["at0004"] = <
+					text = <"Method">
+					description = <"Method by which the health education was communicated to the individual.">
+					comment = <"For example: verbal; demonstration; or printed material. In specific situations it may be important to document that printed fact sheets have been physically handed to the individual, for example regarding the risks of vasectomy.">
+				>
+				["at0006"] = <
+					text = <"Education planned">
+					description = <"Education has been planned but no steps have been taken to initiate education.">
+				>
+				["at0007"] = <
+					text = <"Education scheduled">
+					description = <"Appointment for education scheduled.">
+				>
+				["at0008"] = <
+					text = <"Education provided">
+					description = <"Education session or material provided.">
+				>
+				["at0010"] = <
+					text = <"Reason">
+					description = <"Reason for the activity.">
+					comment = <"For example: reason why the information exchange is planned; or why the exchange was not successful.">
+				>
+				["at0013"] = <
+					text = <"Education completed">
+					description = <"All planned activities for education have been successfully completed.">
+				>
+				["at0014"] = <
+					text = <"Education postponed">
+					description = <"Education has been postponed prior to commencement.">
+				>
+				["at0015"] = <
+					text = <"Education cancelled">
+					description = <"Education has been cancelled prior to commencement.">
+				>
+				["at0016"] = <
+					text = <"Education not completed">
+					description = <"Education session was abandoned before complete.">
+				>
+				["at0017"] = <
+					text = <"Education suspended">
+					description = <"Planned education sessions were suspended after commencement.">
+				>
+				["at0018"] = <
+					text = <"Education recommended">
+					description = <"Education has been recommended but no steps have been taken to initiate education.">
+				>
+				["at0019"] = <
+					text = <"Outcome">
+					description = <"Subjective, narrative assessment of outcome of the health education intervention.">
+					comment = <"For example: a narrative description about the individual's understanding.">
+				>
+				["at0020"] = <
+					text = <"Session Number">
+					description = <"Number of the education session in an multi-session course.">
+				>
+				["at0021"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0023"] = <
+					text = <"Extension">
+					description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+					comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+				>
+				["at0025"] = <
+					text = <"Material details">
+					description = <"Structured  details about the material provided to the individual.">
+				>
+				["at0026"] = <
+					text = <"Scheduled date/ time">
+					description = <"The date and/or time on which the education is intended to be performed.">
+					comment = <"Only for use in association with the 'Education scheduled' pathway step.">
+				>
+				["at0027"] = <
+					text = <"Comment">
+					description = <"Additional narrative about the activity or care pathway step not captured in other fields.">
+				>
+				["at0028"] = <
+					text = <"Requestor">
+					description = <"Details about the healthcare provider or organisation requesting the education.">
+				>
+				["at0029"] = <
+					text = <"Receiver">
+					description = <"Details about the healthcare provider or organisation dthe request for education.">
+				>
+				["at0030"] = <
+					text = <"Requestor order identifier">
+					description = <"The local ID assigned to the order by the healthcare provider or organisation requesting the education.">
+					comment = <"This is equivalent to Placer Order Number in HL7 v2 specifications.">
+				>
+				["at0031"] = <
+					text = <"Receiver order identifier">
+					description = <"The ID assigned to the order by the healthcare provider or organisation receiving the request for education. This is also referred to as Filler Order Identifier.">
+					comment = <"This is equivalent to Filler Order Number in HL7 v2 specifications.">
+				>
+				["at0032"] = <
+					text = <"Recipient">
+					description = <"Recipient of the health education.">
+					comment = <"Relevant if the recipient is being educated on behalf of the subject of care. For example: carer; child; or parent.">
+				>
+				["at0033"] = <
+					text = <"Additional details">
+					description = <"Additional structured details about the health education.">
+				>
+				["at0034"] = <
+					text = <"Interpreter details">
+					description = <"Details about the interpretation.">
+					comment = <"Including language, method and identification of the interpreter.">
+				>
+			>
+		>
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"Helseinformasjon">
+					description = <"Kunnskap og ferdigheter som er overført til et individ for å støtte individet i å gjøre helserelaterte beslutninger og gjøremål.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Emne">
+					description = <"Navngivelse av tema for undervisningen eller informasjonen.">
+					comment = <"Emne kan være et identifisert tema eller en ferdighet, eller kan være navnet på et program for et kurs som gis over flere økter eller konsultasjoner.">
+				>
+				["at0003"] = <
+					text = <"Beskrivelse">
+					description = <"Beskrivelse i fritekst om helserelatert informasjon som ble gitt.">
+				>
+				["at0004"] = <
+					text = <"Metode">
+					description = <"Hvilken metode som ble brukt da den helserelaterte undervisningen/informasjonen ble gitt.">
+					comment = <"For eksempel muntlig, skriftlig, demonstrasjon eller praktisk øving. I noen spesielle tilfeller kan det være viktig å dokumentere at et faktaark har vært overlevert til et individ, for eksempel med informasjon om risikoer ved vasektomi.">
+				>
+				["at0006"] = <
+					text = <"Undervisning planlagt">
+					description = <"Undervisning er planlagt, men ingen aktivitet er gjort for å initiere undervisningen.">
+				>
+				["at0007"] = <
+					text = <"Undervisning tidsfestet">
+					description = <"Det er gjort en avtale for når undervisningen skal gjennomføres.">
+				>
+				["at0008"] = <
+					text = <"Undervisning gjennomført">
+					description = <"Undervisningen er gjort eller informasjonsmateriellet er overlevert.">
+				>
+				["at0010"] = <
+					text = <"Begrunnelse">
+					description = <"Begrunnelse for aktiviteten.">
+					comment = <"For eksempel begrunnelsen for hvorfor det ble planlagt å gi helserelatert informasjon, eller hvorfor den ikke ble vellykket.">
+				>
+				["at0013"] = <
+					text = <"Undervisningen fullført">
+					description = <"Alle planlagte aktiviteter for helserelatert informasjon er gjennomført.">
+				>
+				["at0014"] = <
+					text = <"Undervisning utsatt">
+					description = <"Undervisningen er utsatt før den er påbegynt.">
+				>
+				["at0015"] = <
+					text = <"Undervisningen er kansellert">
+					description = <"Undervisningen er kansellert før den er påbegynt.">
+				>
+				["at0016"] = <
+					text = <"Undervisningen ikke fullført">
+					description = <"Undervisningen ble avbrutt før den ble fullført.">
+				>
+				["at0017"] = <
+					text = <"Undervisningen midlertidig stanset">
+					description = <"Undervisningen, eller serien av undervisningsøkter er midlertidig stanset etter at den/de ble påbegynt.">
+				>
+				["at0018"] = <
+					text = <"Undervisning anbefalt">
+					description = <"Undervisning er anbefalt, men ingen aktivitet er gjort for å initiere undervisningen.">
+				>
+				["at0019"] = <
+					text = <"Resultat">
+					description = <"Subjektiv vurdering i fritekst på utfallet eller resultatet av undervisningen (-e).">
+					comment = <"For eksempel en beskrivelse i fritekst om hvordan individet har forstått helseinformasjonen.">
+				>
+				["at0020"] = <
+					text = <"Sesjonsnummer">
+					description = <"Nummeret på sesjonen dersom det er en serie på et antall økter.">
+				>
+				["at0021"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0023"] = <
+					text = <"Tilleggsinformasjon">
+					description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+					comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+				>
+				["at0025"] = <
+					text = <"Detaljer om opplæringsmateriale">
+					description = <"Strukturerte detaljer om opplæringsmateriellet som er gitt til individet.">
+				>
+				["at0026"] = <
+					text = <"Planlagt dato/tid">
+					description = <"Dato/tid når undervisningen er planlagt utført.">
+					comment = <"Kun til bruk i forbindelse med prosesstrinnet \"Undervisning tidsfestet\".">
+				>
+				["at0027"] = <
+					text = <"Kommentar">
+					description = <"Ytterligere fritekstbeskrivelse av aktivitet eller prosesstrinn som ikke er registrert i andre felt.">
+				>
+				["at0028"] = <
+					text = <"Rekvirent">
+					description = <"Detaljer om helsepersonellet eller organisasjonen som har rekvirert helseinformasjonen.">
+				>
+				["at0029"] = <
+					text = <"Mottakerorganisasjon">
+					description = <"Detaljer om helsepersonellet eller organisasjonen som mottar forespørsel om helseinformasjonen/undervisningen.">
+				>
+				["at0030"] = <
+					text = <"RekvisisjonsID">
+					description = <"Den lokale IDen tilordnet rekvisisjonen av helsepersonellet eller organisasjonen som rekvirerer helseinformasjonen.">
+					comment = <"Tilsvarer \"Placer Order Number\" i HL7 v2-spesifikasjonene.">
+				>
+				["at0031"] = <
+					text = <"Mottakers rekvisisjonsID">
+					description = <"IDen tilordnet rekvisisjonen av helsepersonellet eller organisasjonen som mottar forespørselen.">
+					comment = <"Tilsvarer \"Filler Order Number\" i HL7 v2-spesifikasjonene.">
+				>
+				["at0032"] = <
+					text = <"Mottaker">
+					description = <"Resipienten av undervisningen.">
+					comment = <"Bare relevant dersom mottaker som får undervisningen får det på vegne av et individ. For eksempel omsorgsperson, barn eller foresatt.">
+				>
+				["at0033"] = <
+					text = <"Ytterligere detaljer">
+					description = <"Ytterligere strukturerte detaljer om undervisningen.">
+				>
+				["at0034"] = <
+					text = <"Detaljer om tolking">
+					description = <"Detaljer om tolking som ble utført.">
+					comment = <"Inkludert språk, metode og identifisering av den som utførte tolkingen.">
+				>
+			>
+		>
+	>
