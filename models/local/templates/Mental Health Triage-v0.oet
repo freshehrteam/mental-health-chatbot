@@ -60,7 +60,7 @@
             </item>
             <item>
                 <key>MD5-CAM-1.0.1</key>
-                <value>97d55a3ed3884f81608006c440b8e8ce</value>
+                <value>a30540dbf5ffd7a6dfc9cd294fcbdc8f</value>
             </item>
             <item>
                 <key>PARENT:MD5-CAM-1.0.1</key>
@@ -127,6 +127,7 @@
         </Content>
         <Content archetype_id="openEHR-EHR-OBSERVATION.phq_9.v0"
             path="/content" xsi:type="tem:OBSERVATION">
+            <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0004]"/>
             <Rule max="0" path="/data[at0001]/events[at0002]/data[at0003]/items[at0010]">
                 <constraint xsi:type="tem:countConstraint">
                     <maxMagnitude>6</maxMagnitude>
